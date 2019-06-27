@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ path('blog') }}">Le blog de Paul</a>
+    <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('home') }}">Accueil
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('blog') }}">Blog
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if app.user %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="accountDropdownLink">
+                        {{app.user.FullName }}
+                        <img alt="avatar de " class="avatar avatar-mini mr-2" src="http://placehold.it/64x64">
+                    </a>
+                    <div aria-labelledby="accountDropdownLink" class="dropdown-menu dropdown-menu-right">
+                        <a href="{{ path('blog_create') }}" class="dropdown-item">Ecrire un article</a>
+                        <a href="{{ path('blog') }}" class="dropdown-item">Mon compte</a>
+                        <a href="{{ path('blog') }}" class="dropdown-item">Modifier mon profil</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{ path('app_register') }}" class="nav-link">S'enregistrer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('blog') }}" class="nav-link">Connexion</a>
+                </li>
+            {% endif %}
+        </ul>
+    </form>
+</div></nav>{% for label,messages in app.flashes %}
+
+<div class="container">
+    <div class="alert alert-{{ label }}">
+        {% for message in messages %}
+            <p>
+                {{ message | raw }}</p>
+        {% endfor %}
+    </div>
+</div>{% endfor %}

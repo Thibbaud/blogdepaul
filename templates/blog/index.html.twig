@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les derniers articles
+{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <div class="jumbotron text-center">
+            <h1>Les derniers articles</h1>
+        </div>
+        <div class="row mt-4">
+            {% for article in articles %}
+                <div class="col-md-4">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">
+                            {{article.title}}
+                            <br/>
+                            <small>créé le
+                                {{article.createdAt | date('d/m/y')}}</small>
+                        </div>
+                        <img alt="image de l'article" src="{{article.image}}" style="height: 300px; width: 100%; display: block"/>
+                        <div class="card-body">
+                            <small>Auteur :
+                            </small>
+                            <p class="card-text">
+                                {{article.content |slice(0, 120)|raw}}...
+
+                            </p>
+                            <a class="btn btn-secondary" href="{{path('blog_show', {'id': article.id}) }}">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

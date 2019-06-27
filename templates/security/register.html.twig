@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="my-5">Inscription sur le blog</h1>
+        <hr>
+        <p>Bienvenue sur le formulaire d'inscription, ici tu vas pouvoir enregistrer ton compte pour pouvoir poster des articles !</p>
+    </div>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-secondary">
+                <h2 class="alert-heading">Informations générales</h2>
+                <hr>
+                <i class="fas fa-user"></i>
+
+                {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Prénom'}}) }}
+                <i class="fas fa-user"></i>
+
+                {{ form_row(form.lastname, {'label': 'Nom de famille','attr': {'placeholder': 'Nom de famille'}}) }}
+
+
+                <i class="fas fa-envelope"></i>
+                {{ form_row(form.email, {'label': 'Email','attr': {'placeholder': 'Entrez votre email'}}) }}
+
+
+                {{ form_row(form.picture, {'label': 'URL de l\'avatar','attr': {'placeholder': 'Entrez une adresse pour votre photo de profil'}}) }}
+
+
+                    <hr>
+                    <h2 class="alert-heading mt-2">Confidentialité</h2>
+                    <hr>
+<i class="fas fa-lock"></i>
+
+{{ form_row(form.password, {'label': 'Mot de passe','attr': {'placeholder': 'Entrez un mot de passe'}}) }}
+
+
+<i class="fas fa-lock"></i>
+
+{{ form_row(form.confirmPassword, {'label': 'Confirmez votre mot de passe','attr': {'placeholder': 'Confirmez votre mot de passe'}}) }}
+
+
+                    <p>Êtes-vous prêts à nous rejoindre ?</p>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-check"></i>
+                        Confirmez votre inscription
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

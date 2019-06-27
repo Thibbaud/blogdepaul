@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Article
+    {{article.title}}
+{% endblock %}
+
+{% block body %}
+    <section id="article">
+        <div class="ad-title" style="background-image: url({{ article.image }})"></div>
+
+        <div class="container mt-4">
+            <small>
+                Ecrit le
+                {{article.createdAT | date('d/m/y')}}
+                par
+                {{article.author.lastname}}
+
+            </small>
+            <h1>
+                {{article.title}}</h1>
+            <p>{{article.content}}</p>
+            <img alt="" src="{{article.image}}">
+
+        </div>
+
+
+    </section>
+
+    <div class="container">
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        <button class="btn btn-primary">Commenter</button>
+        {{form_end(form)}}
+
+        <section id="commentaires">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="row">
+                        <div class="col-3">
+                            {{comment.author.firstname}}
+                            (<small>{{comment.createdAt | date('d/m/Yà H:i')}}</small>)
+                        </div>
+                        <div class="col">
+                            {{comment.content | raw}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+
+    </div>
+{% endblock %}
