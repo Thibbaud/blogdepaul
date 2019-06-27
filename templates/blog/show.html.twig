@@ -7,46 +7,47 @@
 {% block body %}
     <section id="article">
         <div class="ad-title" style="background-image: url({{ article.image }})"></div>
-
         <div class="container mt-4">
             <small>
                 Ecrit le
                 {{article.createdAT | date('d/m/y')}}
                 par
-                {{article.author.lastname}}
-
+                {{article.author.firstname}}
             </small>
             <h1>
                 {{article.title}}</h1>
-            <p>{{article.content}}</p>
-            <img alt="" src="{{article.image}}">
+            <img class="article-image mb-3" alt="image de {{article.author.fullname}}" src="{{article.image}}" style="max-width: 600px; max-height: 300px">
 
+            <p>{{article.content | raw}}</p>
+            <u>
+                <strong>Vous avez fini de lire l'article</strong>
+            </u>
+            <hr>
         </div>
-
-
     </section>
 
     <div class="container">
-        {{form_start(form)}}
-        {{form_widget(form)}}
-        <button class="btn btn-primary">Commenter</button>
-        {{form_end(form)}}
-
         <section id="commentaires">
             {% for comment in comments %}
                 <div class="comment">
                     <div class="row">
                         <div class="col-3">
                             {{comment.author.firstname}}
-                            (<small>{{comment.createdAt | date('d/m/Yà H:i')}}</small>)
+                            <br>
+                            (<small>le
+                                {{comment.createdAt | date('d/m/Yà H:i')}}</small>) a écrit:
                         </div>
                         <div class="col">
                             {{comment.content | raw}}
                         </div>
                     </div>
                 </div>
+                <hr>
             {% endfor %}
         </section>
-
+        {{form_start(form)}}
+        {{form_row(form.content, {'label': "Ecrire un commentaire :", 'attr': {'placeholder': 'Commentaire'}})}}
+        <button class="btn btn-primary mb-4">Commenter</button>
+        {{form_end(form)}}
     </div>
 {% endblock %}

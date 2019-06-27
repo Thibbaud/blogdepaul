@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Modification du profil</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="alert-heading">Informations générales</h2>
+                    <hr>
+                    {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Entre ton prénom'}}) }}
+                    {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'placeholder': 'Entre ton nom de famille'}}) }}
+
+                    {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Entre ton nouvel email'}}) }}
+
+                    {{ form_row(form.picture, {'label': 'Avatar', 'attr': {'placeholder': 'Entre la nouvelle adresse de ton image'}}) }}
+
+                </div>
+                <p>Si vous avez terminé vos modifications, vous pouvez les sauvegarder</p>
+                <button class="btn btn-primary">
+                    <i class="fas fa-check"></i>
+                    Confirmer les modifications
+                </button>
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

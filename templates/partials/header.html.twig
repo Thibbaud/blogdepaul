@@ -24,12 +24,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="accountDropdownLink">
                         {{app.user.FullName }}
-                        <img alt="avatar de " class="avatar avatar-mini mr-2" src="http://placehold.it/64x64">
+                        <img alt="avatar de " class="avatar avatar-mini mr-2" src="{{app.user.picture}}">
                     </a>
                     <div aria-labelledby="accountDropdownLink" class="dropdown-menu dropdown-menu-right">
                         <a href="{{ path('blog_create') }}" class="dropdown-item">Ecrire un article</a>
-                        <a href="{{ path('blog') }}" class="dropdown-item">Mon compte</a>
-                        <a href="{{ path('blog') }}" class="dropdown-item">Modifier mon profil</a>
+                        <a href="{{ path('user', {'id': app.user.id}) }}" class="dropdown-item">Mon compte</a>
+                        <a href="{{ path('account_profile') }}" class="dropdown-item">Modifier mon profil</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
                     </div>
